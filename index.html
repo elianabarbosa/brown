@@ -1,10 +1,29 @@
+<!--
+  TEAM FINE SHYT — 1-page GitHub Pages site (mobile-friendly)
+
+  Files needed in the SAME repo folder as this index.html:
+    - team.png        (your collage / hero image)
+    - eliana.png
+    - janaye.png
+    - keon.png
+    - jack.png
+    - kevin.png
+
+  Notes:
+  - Brown theme ✅
+  - Floating 💩 emojis ✅ (plus speed slider)
+  - Mobile-first: removed keyboard shortcuts + "press V" text ✅
+  - Fixed background banding / gradient seam ✅ (overlay layer)
+-->
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fine Shyt Retreat Team</title>
-    <meta name="description" content="Fine Shyt Retreat Team — retreat recap & vibes." />
+    <title>Team Fine Shyt</title>
+    <meta name="description" content="Team Fine Shyt — retreat team page." />
+
     <style>
       :root{
         --bg0:#1b0f08;
@@ -15,27 +34,46 @@
         --shadow: 0 18px 60px rgba(0,0,0,.45);
         --radius: 22px;
       }
+
       *{ box-sizing:border-box; }
       html,body{ height:100%; }
+
       body{
         margin:0;
         font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
         color: var(--cream);
         background:
-          radial-gradient(1200px 600px at 10% 0%, rgba(196,154,108,.25), transparent 60%),
-          radial-gradient(900px 500px at 90% 10%, rgba(246,239,231,.12), transparent 55%),
-          linear-gradient(180deg, var(--bg0), var(--bg1) 40%, var(--bg2));
+          radial-gradient(900px 520px at 15% -5%, rgba(196,154,108,.20), transparent 62%),
+          radial-gradient(900px 520px at 85% 0%, rgba(246,239,231,.10), transparent 60%),
+          radial-gradient(1200px 700px at 50% 55%, rgba(196,154,108,.10), transparent 70%),
+          linear-gradient(180deg, var(--bg0), var(--bg1) 45%, var(--bg2));
         overflow-x:hidden;
       }
+
+      /* Anti-banding overlay (fixes seam/gradient split) */
+      body::before{
+        content:"";
+        position: fixed;
+        inset: 0;
+        pointer-events:none;
+        z-index: 0;
+        background:
+          radial-gradient(900px 600px at 30% 20%, rgba(196,154,108,.12), transparent 65%),
+          radial-gradient(900px 600px at 70% 60%, rgba(246,239,231,.07), transparent 70%),
+          radial-gradient(1200px 900px at 50% 100%, rgba(196,154,108,.08), transparent 70%);
+      }
+
+      a{ color: inherit; }
 
       .wrap{
         width:min(1100px, 92vw);
         margin:0 auto;
         padding: 28px 0 64px;
         position:relative;
-        z-index: 2;
+        z-index: 2; /* above overlay + poop layer */
       }
 
+      /* Top bar */
       .topbar{
         display:flex;
         align-items:center;
@@ -50,7 +88,7 @@
       }
       .brand{
         display:flex; align-items:center; gap:12px;
-        font-weight: 700;
+        font-weight: 750;
         letter-spacing:.3px;
         flex-wrap:wrap;
       }
@@ -64,13 +102,14 @@
         white-space:nowrap;
       }
       .pill{ display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+
       .btn{
         appearance:none; border:1px solid rgba(246,239,231,.16);
         background: rgba(246,239,231,.06);
         color: var(--cream);
         padding: 10px 12px;
         border-radius: 999px;
-        font-weight: 600;
+        font-weight: 650;
         cursor:pointer;
         transition: transform .12s ease, background .12s ease, border-color .12s ease;
       }
@@ -85,6 +124,7 @@
         border-color: rgba(196,154,108,.35);
       }
 
+      /* Hero layout */
       .hero{
         margin-top: 22px;
         display:grid;
@@ -131,6 +171,7 @@
         line-height: 1.5;
         color: rgba(246,239,231,.82);
         max-width: 52ch;
+        margin: 0;
       }
 
       .statRow{
@@ -150,6 +191,34 @@
       }
       .chip b{ color: var(--cream); }
 
+      /* Marquee strip */
+      .marquee{
+        margin-top: 14px;
+        border-radius: 18px;
+        overflow:hidden;
+        border:1px solid rgba(246,239,231,.12);
+        background: rgba(0,0,0,.18);
+      }
+      .marqueeTrack{
+        display:flex;
+        gap: 28px;
+        padding: 10px 0;
+        white-space: nowrap;
+        animation: scroll 14s linear infinite;
+        will-change: transform;
+      }
+      .marquee span{
+        color: rgba(246,239,231,.78);
+        font-weight: 750;
+        letter-spacing:.04em;
+        font-size: 13px;
+      }
+      @keyframes scroll{
+        from{ transform: translateX(0); }
+        to{ transform: translateX(-50%); }
+      }
+
+      /* Hero art */
       .heroArt{
         height: 100%;
         min-height: 380px;
@@ -188,6 +257,30 @@
       }
       .imgCaption .small{ font-size: 12px; color: rgba(246,239,231,.72); }
 
+      /* Controls */
+      .meterRow{
+        display:flex;
+        align-items:center;
+        gap: 12px;
+        flex-wrap:wrap;
+        margin-top: 16px;
+      }
+      input[type="range"]{
+        width: min(360px, 100%);
+        accent-color: var(--caramel);
+      }
+      .meter{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(0,0,0,.20);
+        border:1px solid rgba(246,239,231,.12);
+        font-size: 13px;
+      }
+
+      /* Sections grid */
       .grid{
         margin-top: 18px;
         display:grid;
@@ -212,7 +305,7 @@
         margin: 0;
       }
 
-      /* Team */
+      /* Team cards */
       .teamGrid{
         display:grid;
         grid-template-columns: repeat(5, 1fr);
@@ -237,12 +330,19 @@
         cursor: pointer;
       }
       .person:hover{
-        transform: translateY(-2px) rotateX(2deg) rotateY(-2deg);
+        transform: translateY(-2px);
         background: rgba(0,0,0,.28);
         border-color: rgba(246,239,231,.18);
       }
+      .spark{
+        position:absolute; inset:-40px;
+        background: radial-gradient(circle at 30% 20%, rgba(196,154,108,.30), transparent 45%);
+        opacity:0;
+        transition: opacity .12s ease;
+        pointer-events:none;
+      }
+      .person:hover .spark{ opacity:1; }
 
-      /* Photo avatar */
       .avatarPic{
         width: 46px;
         height: 46px;
@@ -260,9 +360,8 @@
         display:block;
         transform: scale(1.02);
       }
-
       .person .name{
-        font-weight: 800;
+        font-weight: 820;
         letter-spacing: -.01em;
         margin: 0 0 4px;
       }
@@ -272,37 +371,8 @@
         color: rgba(246,239,231,.75);
         line-height: 1.35;
       }
-      .spark{
-        position:absolute; inset:-40px;
-        background: radial-gradient(circle at 30% 20%, rgba(196,154,108,.30), transparent 45%);
-        opacity:0;
-        transition: opacity .12s ease;
-        pointer-events:none;
-      }
-      .person:hover .spark{ opacity:1; }
 
-      .meterRow{
-        display:flex;
-        align-items:center;
-        gap: 12px;
-        flex-wrap:wrap;
-        margin-top: 16px;
-      }
-      input[type="range"]{
-        width: min(360px, 100%);
-        accent-color: var(--caramel);
-      }
-      .meter{
-        display:flex;
-        align-items:center;
-        gap:10px;
-        padding: 10px 12px;
-        border-radius: 14px;
-        background: rgba(0,0,0,.20);
-        border:1px solid rgba(246,239,231,.12);
-        font-size: 13px;
-      }
-
+      /* Footer */
       footer{
         margin-top: 18px;
         display:flex;
@@ -317,6 +387,7 @@
         flex-wrap:wrap;
       }
 
+      /* Toast */
       .toast{
         position: fixed;
         bottom: 18px;
@@ -341,7 +412,7 @@
         transform: translateX(-50%) translateY(-4px);
       }
 
-      /* 💩 layer */
+      /* 💩 Layer */
       .poopLayer{
         position: fixed;
         inset: 0;
@@ -358,6 +429,7 @@
         will-change: transform;
       }
 
+      /* Sparkles */
       .sparkle{
         position: fixed;
         width: 10px; height: 10px;
@@ -371,32 +443,6 @@
         transition: transform .6s ease, opacity .6s ease;
       }
 
-      .marquee{
-        margin-top: 14px;
-        border-radius: 18px;
-        overflow:hidden;
-        border:1px solid rgba(246,239,231,.12);
-        background: rgba(0,0,0,.18);
-      }
-      .marqueeTrack{
-        display:flex;
-        gap: 28px;
-        padding: 10px 0;
-        white-space: nowrap;
-        animation: scroll 14s linear infinite;
-        will-change: transform;
-      }
-      .marquee span{
-        color: rgba(246,239,231,.78);
-        font-weight: 700;
-        letter-spacing:.04em;
-        font-size: 13px;
-      }
-      @keyframes scroll{
-        from{ transform: translateX(0); }
-        to{ transform: translateX(-50%); }
-      }
-
       @media (prefers-reduced-motion: reduce){
         .marqueeTrack{ animation:none; }
         .poop{ display:none; }
@@ -406,13 +452,15 @@
   </head>
 
   <body>
+    <!-- Floating 💩 -->
     <div class="poopLayer" aria-hidden="true" id="poopLayer"></div>
 
     <div class="wrap">
+      <!-- Topbar -->
       <div class="topbar">
         <div class="brand">
           <span style="font-size:18px;">🤎</span>
-          <span>Fine Shyt Retreat Team</span>
+          <span>Team Fine Shyt</span>
           <span class="badge">brown theme supremacy</span>
         </div>
         <div class="pill">
@@ -421,14 +469,14 @@
         </div>
       </div>
 
+      <!-- Hero -->
       <div class="hero">
         <section class="card cardPad">
           <div class="kicker">retreat squad</div>
           <h1>team <span style="color:var(--caramel)">fine shyt</span></h1>
-<p class="subtitle">
-  One-page shrine to the team. Brown-coded. Maximum vibes. Minimal shame.
-</p>
-
+          <p class="subtitle">
+            One-page shrine to the team. Brown-coded. Maximum vibes. Minimal shame.
+          </p>
 
           <div class="statRow" role="list" aria-label="Highlights">
             <div class="chip" role="listitem">🤝 <b>Team:</b> Fine Shyt</div>
@@ -470,71 +518,58 @@
 
         <aside class="card heroArt">
           <div class="imgFrame">
-            <!-- Keep using your collage for hero (rename to team.png) -->
-            <img src="team.png" alt="Fine Shyt retreat team collage" />
+            <img src="team.png" alt="Team Fine Shyt photo collage" />
             <div class="imgOverlay"></div>
           </div>
 
           <div class="imgCaption">
             <div>
               <strong style="letter-spacing:-.01em;">Team photo</strong>
-<div class="small">the squad in 5 frames of excellence</div>
-
+              <div class="small">the squad in 5 frames of excellence</div>
             </div>
             <button class="btn" id="blessBtn" title="Just vibes">Bless this page 🙏</button>
           </div>
         </aside>
       </div>
 
+      <!-- Sections -->
       <div class="grid">
         <section class="card cardPad col-8">
           <h2 class="miniTitle">Meet the team</h2>
-          <p class="muted">
-           Click a card for confirmation toast. Hover = extra aura.
-          </p>
+          <p class="muted">Click a card for confirmation toast. Hover = extra aura.</p>
 
           <div class="teamGrid">
             <div class="person" data-name="Eliana Barbosa" data-role="Number One Captain">
               <div class="spark"></div>
-              <div class="avatarPic">
-                <img src="eliana.png" alt="Eliana" />
-              </div>
+              <div class="avatarPic"><img src="eliana.png" alt="Eliana" /></div>
               <p class="name">Eliana Barbosa</p>
               <p class="role">Number One Captain</p>
             </div>
 
             <div class="person" data-name="Janaye Cheong" data-role="Alcohol Endurance Specialist">
               <div class="spark"></div>
-              <div class="avatarPic">
-                <img src="janaye.png" alt="Janaye" />
-              </div>
+              <div class="avatarPic"><img src="janaye.png" alt="Janaye" /></div>
               <p class="name">Janaye Cheong</p>
               <p class="role">Alcohol Endurance Specialist</p>
             </div>
 
             <div class="person" data-name="Keon Lee" data-role="Strength & Performance Lead">
               <div class="spark"></div>
-              <div class="avatarPic">
-                <img src="keon.png" alt="Keon" />
-              </div>
+              <div class="avatarPic"><img src="keon.png" alt="Keon" /></div>
               <p class="name">Keon Lee</p>
-              <p class="role">Strength & Performance Lead</p>
+              <p class="role">Strength &amp; Performance Lead</p>
             </div>
 
             <div class="person" data-name="Jack Li" data-role="All-Around Menace">
               <div class="spark"></div>
-              <div class="avatarPic">
-                <img src="jack.png" alt="Jack" />
-              </div>
+              <div class="avatarPic"><img src="jack.png" alt="Jack" /></div>
               <p class="name">Jack Li</p>
               <p class="role">All-Around Menace</p>
             </div>
 
             <div class="person" data-name="Kevin Xiao" data-role="Big Brain Operations">
               <div class="spark"></div>
-              <div class="avatarPic">
-                <img src="kevin.png" alt="Kevin" />
-              </div>
+              <div class="avatarPic"><img src="kevin.png" alt="Kevin" /></div>
               <p class="name">Kevin Xiao</p>
               <p class="role">Big Brain Operations</p>
             </div>
@@ -566,27 +601,22 @@
 
           <div style="height:14px;"></div>
 
-          <button class="btn primary" id="randomBtn" style="width:100%;">
-            Generate a retreat slogan 🎲
-          </button>
-          <p class="muted" id="slogan" style="margin-top:10px;">
-            Click to summon an unforgettable phrase.
-          </p>
+          <button class="btn primary" id="randomBtn" style="width:100%;">Generate a retreat slogan 🎲</button>
+          <p class="muted" id="slogan" style="margin-top:10px;">Click to summon an unforgettable phrase.</p>
         </section>
 
         <section class="card cardPad col-12">
           <h2 class="miniTitle">Tiny FAQ</h2>
           <p class="muted" style="margin:0;">
             <b>Q:</b> Why the 💩? <b>A:</b> Because it’s funny + movement = points. <br/>
-            <b>Q:</b> How do I turn it off? <b>A:</b> Set the 💩 speed to 0×. <br/>
+            <b>Q:</b> How do I turn it off? <b>A:</b> Set the 💩 speed to 0×.
           </p>
         </section>
       </div>
 
-     <footer>
-  <span>© <span id="year"></span> Fine Shyt Retreat Team • built for maximum fun points 🤎</span>
-</footer>
-
+      <footer>
+        <span>© <span id="year"></span> Team Fine Shyt • built for maximum fun points 🤎</span>
+      </footer>
     </div>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -728,7 +758,7 @@
       vibe.addEventListener("input", applyVibe);
       applyVibe();
 
-      // Cards
+      // Cards toast
       document.querySelectorAll(".person").forEach(card => {
         card.addEventListener("click", () => {
           toast(`${card.dataset.name}: ${card.dataset.role} ✅`);
@@ -759,14 +789,14 @@
       $("#eggBtn").addEventListener("click", (e) => {
         eggCount++;
         const r = e.target.getBoundingClientRect();
-        sparkleAt(r.left + r.width/2, r.top + r.height/2, 24);
+        sparkleAt(r.left + r.width/2, r.top + r.height/2, 22);
 
         if(eggCount < 3){
           toast("I said do NOT press 😭");
           return;
         }
         if(eggCount === 3){
-          toast("VIBE MODE unlocked 🔓");
+          toast("Okay fine… MAXIMUM VIBES unlocked 🔓");
           vibe.value = 88; vibe.dispatchEvent(new Event("input"));
           speed.value = 1.7; speed.dispatchEvent(new Event("input"));
           return;
@@ -774,21 +804,6 @@
         vibe.value = 100; vibe.dispatchEvent(new Event("input"));
         speed.value = 2.3; speed.dispatchEvent(new Event("input"));
         toast("UNHINGED MODE (complimentary) 🚨");
-      });
-
-      // Keyboard shortcuts
-      document.addEventListener("keydown", (e) => {
-        if(e.key.toLowerCase() === "v"){
-          const v = Number(vibe.value);
-          vibe.value = v < 75 ? 85 : 35;
-          vibe.dispatchEvent(new Event("input"));
-          toast(v < 75 ? "Vibe mode: ON 🔥" : "Vibe mode: chill 😌");
-        }
-        if(e.shiftKey && e.key.toLowerCase() === "p"){
-          speed.value = speedMult !== 0 ? 0 : 1.0;
-          speed.dispatchEvent(new Event("input"));
-          toast(speedMult !== 0 ? "💩 paused (Shift+P)." : "💩 resumed (Shift+P).");
-        }
       });
     </script>
   </body>
