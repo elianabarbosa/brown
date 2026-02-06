@@ -1,0 +1,785 @@
+```html
+<!--
+  Fine Shyt Retreat Team — 1-page site (GitHub Pages ready)
+
+  ✅ Use:
+  1) Save as index.html
+  2) Put your image in same folder as this file and name it: team.png
+     (or change src="team.png" below)
+  3) Push to GitHub → enable GitHub Pages
+
+  Updated names:
+  Jack Li, Eliana Barbosa, Kevin Xiao, Janaye Cheong, Keon Lee
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fine Shyt Retreat Team</title>
+    <meta name="description" content="Fine Shyt Retreat Team — retreat recap & vibes." />
+    <style>
+      :root{
+        --bg0:#1b0f08;
+        --bg1:#2a160c;
+        --bg2:#3b1f10;
+        --caramel:#c49a6c;
+        --cream:#f6efe7;
+        --shadow: 0 18px 60px rgba(0,0,0,.45);
+        --radius: 22px;
+      }
+      *{ box-sizing:border-box; }
+      html,body{ height:100%; }
+      body{
+        margin:0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+        color: var(--cream);
+        background:
+          radial-gradient(1200px 600px at 10% 0%, rgba(196,154,108,.25), transparent 60%),
+          radial-gradient(900px 500px at 90% 10%, rgba(246,239,231,.12), transparent 55%),
+          linear-gradient(180deg, var(--bg0), var(--bg1) 40%, var(--bg2));
+        overflow-x:hidden;
+      }
+
+      .wrap{
+        width:min(1100px, 92vw);
+        margin:0 auto;
+        padding: 28px 0 64px;
+        position:relative;
+        z-index: 2;
+      }
+
+      .topbar{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:16px;
+        padding: 14px 16px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, rgba(246,239,231,.10), rgba(246,239,231,.06));
+        box-shadow: 0 10px 30px rgba(0,0,0,.25);
+        border: 1px solid rgba(246,239,231,.14);
+        backdrop-filter: blur(10px);
+      }
+      .brand{
+        display:flex; align-items:center; gap:12px;
+        font-weight: 700;
+        letter-spacing:.3px;
+        flex-wrap:wrap;
+      }
+      .badge{
+        display:inline-flex; align-items:center; gap:8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(196,154,108,.18);
+        border:1px solid rgba(196,154,108,.25);
+        font-size: 13px;
+        white-space:nowrap;
+      }
+      .pill{ display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+      .btn{
+        appearance:none; border:1px solid rgba(246,239,231,.16);
+        background: rgba(246,239,231,.06);
+        color: var(--cream);
+        padding: 10px 12px;
+        border-radius: 999px;
+        font-weight: 600;
+        cursor:pointer;
+        transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      }
+      .btn:hover{
+        transform: translateY(-1px);
+        background: rgba(246,239,231,.10);
+        border-color: rgba(246,239,231,.24);
+      }
+      .btn:active{ transform: translateY(0px) scale(.99); }
+      .btn.primary{
+        background: linear-gradient(180deg, rgba(196,154,108,.32), rgba(196,154,108,.18));
+        border-color: rgba(196,154,108,.35);
+      }
+
+      .hero{
+        margin-top: 22px;
+        display:grid;
+        grid-template-columns: 1.05fr .95fr;
+        gap: 20px;
+        align-items: stretch;
+      }
+      @media (max-width: 920px){
+        .hero{ grid-template-columns: 1fr; }
+      }
+
+      .card{
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, rgba(246,239,231,.10), rgba(246,239,231,.06));
+        border: 1px solid rgba(246,239,231,.14);
+        box-shadow: var(--shadow);
+        overflow:hidden;
+        position:relative;
+      }
+      .cardPad{ padding: 22px; }
+
+      .kicker{
+        font-size: 13px;
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        color: rgba(246,239,231,.78);
+        display:flex; align-items:center; gap:10px;
+      }
+      .kicker::before{
+        content:"";
+        width: 34px; height: 1px;
+        background: rgba(246,239,231,.35);
+        display:inline-block;
+      }
+
+      h1{
+        margin: 12px 0 10px;
+        font-size: clamp(34px, 4.2vw, 58px);
+        line-height: 1.02;
+        letter-spacing: -0.03em;
+      }
+      .subtitle{
+        font-size: 16px;
+        line-height: 1.5;
+        color: rgba(246,239,231,.82);
+        max-width: 52ch;
+      }
+
+      .statRow{
+        margin-top: 18px;
+        display:flex;
+        flex-wrap:wrap;
+        gap: 10px;
+      }
+      .chip{
+        display:inline-flex; align-items:center; gap:8px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(0,0,0,.22);
+        border: 1px solid rgba(246,239,231,.12);
+        font-size: 13px;
+        color: rgba(246,239,231,.88);
+      }
+      .chip b{ color: var(--cream); }
+
+      .heroArt{
+        height: 100%;
+        min-height: 380px;
+        display:flex;
+        flex-direction:column;
+        gap: 12px;
+      }
+      .imgFrame{
+        flex:1;
+        border-radius: calc(var(--radius) - 6px);
+        overflow:hidden;
+        border: 1px solid rgba(246,239,231,.12);
+        position:relative;
+        background: rgba(0,0,0,.25);
+      }
+      .imgFrame img{
+        width:100%;
+        height:100%;
+        object-fit: cover;
+        display:block;
+        transform: scale(1.02);
+      }
+      .imgOverlay{
+        position:absolute; inset:0;
+        background:
+          radial-gradient(800px 380px at 10% 0%, rgba(196,154,108,.25), transparent 60%),
+          linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.38));
+        pointer-events:none;
+      }
+      .imgCaption{
+        display:flex; align-items:center; justify-content:space-between; gap:10px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: rgba(0,0,0,.22);
+        border: 1px solid rgba(246,239,231,.12);
+      }
+      .imgCaption .small{ font-size: 12px; color: rgba(246,239,231,.72); }
+
+      .grid{
+        margin-top: 18px;
+        display:grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 14px;
+      }
+      .col-4{ grid-column: span 4; }
+      .col-8{ grid-column: span 8; }
+      .col-12{ grid-column: span 12; }
+      @media (max-width: 980px){
+        .col-4, .col-8{ grid-column: span 12; }
+      }
+
+      .miniTitle{
+        font-size: 18px;
+        margin: 0 0 6px;
+        letter-spacing: -.01em;
+      }
+      .muted{
+        color: rgba(246,239,231,.78);
+        line-height: 1.55;
+        margin: 0;
+      }
+
+      .teamGrid{
+        display:grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+        margin-top: 10px;
+      }
+      @media (max-width: 980px){
+        .teamGrid{ grid-template-columns: repeat(2,1fr); }
+      }
+      @media (max-width: 520px){
+        .teamGrid{ grid-template-columns: 1fr; }
+      }
+
+      .person{
+        padding: 14px;
+        border-radius: 18px;
+        background: rgba(0,0,0,.20);
+        border: 1px solid rgba(246,239,231,.12);
+        transition: transform .12s ease, background .12s ease, border-color .12s ease;
+        position:relative;
+        overflow:hidden;
+      }
+      .person:hover{
+        transform: translateY(-2px) rotateX(2deg) rotateY(-2deg);
+        background: rgba(0,0,0,.28);
+        border-color: rgba(246,239,231,.18);
+      }
+      .avatar{
+        width: 42px; height: 42px;
+        border-radius: 14px;
+        background: linear-gradient(180deg, rgba(196,154,108,.45), rgba(246,239,231,.10));
+        border: 1px solid rgba(246,239,231,.14);
+        display:flex; align-items:center; justify-content:center;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      .person .name{
+        font-weight: 800;
+        letter-spacing: -.01em;
+        margin: 0 0 4px;
+      }
+      .person .role{
+        margin: 0;
+        font-size: 13px;
+        color: rgba(246,239,231,.75);
+        line-height: 1.35;
+      }
+      .spark{
+        position:absolute; inset:-40px;
+        background: radial-gradient(circle at 30% 20%, rgba(196,154,108,.30), transparent 45%);
+        opacity:0;
+        transition: opacity .12s ease;
+        pointer-events:none;
+      }
+      .person:hover .spark{ opacity:1; }
+
+      .meterRow{
+        display:flex;
+        align-items:center;
+        gap: 12px;
+        flex-wrap:wrap;
+        margin-top: 16px;
+      }
+      input[type="range"]{
+        width: min(360px, 100%);
+        accent-color: var(--caramel);
+      }
+      .meter{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(0,0,0,.20);
+        border:1px solid rgba(246,239,231,.12);
+        font-size: 13px;
+      }
+
+      footer{
+        margin-top: 18px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: rgba(0,0,0,.18);
+        border: 1px solid rgba(246,239,231,.12);
+        color: rgba(246,239,231,.72);
+        flex-wrap:wrap;
+      }
+
+      .toast{
+        position: fixed;
+        bottom: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,.55);
+        border: 1px solid rgba(246,239,231,.16);
+        color: var(--cream);
+        padding: 12px 14px;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.35);
+        z-index: 9999;
+        opacity:0;
+        pointer-events:none;
+        transition: opacity .18s ease, transform .18s ease;
+        backdrop-filter: blur(10px);
+        max-width: min(520px, 92vw);
+        font-size: 14px;
+      }
+      .toast.show{
+        opacity:1;
+        transform: translateX(-50%) translateY(-4px);
+      }
+
+      .poopLayer{
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        overflow:hidden;
+      }
+      .poop{
+        position:absolute;
+        font-size: var(--size, 26px);
+        opacity: var(--op, .55);
+        filter: drop-shadow(0 8px 10px rgba(0,0,0,.35));
+        transform: translate3d(-120px, 0, 0) rotate(0deg);
+        will-change: transform;
+      }
+
+      .sparkle{
+        position: fixed;
+        width: 10px; height: 10px;
+        border-radius: 999px;
+        background: rgba(246,239,231,.7);
+        box-shadow: 0 0 18px rgba(196,154,108,.65);
+        pointer-events:none;
+        z-index: 9998;
+        transform: translate(-50%, -50%) scale(1);
+        opacity:1;
+        transition: transform .6s ease, opacity .6s ease;
+      }
+
+      .marquee{
+        margin-top: 14px;
+        border-radius: 18px;
+        overflow:hidden;
+        border:1px solid rgba(246,239,231,.12);
+        background: rgba(0,0,0,.18);
+      }
+      .marqueeTrack{
+        display:flex;
+        gap: 28px;
+        padding: 10px 0;
+        white-space: nowrap;
+        animation: scroll 14s linear infinite;
+        will-change: transform;
+      }
+      .marquee span{
+        color: rgba(246,239,231,.78);
+        font-weight: 700;
+        letter-spacing:.04em;
+        font-size: 13px;
+      }
+      @keyframes scroll{
+        from{ transform: translateX(0); }
+        to{ transform: translateX(-50%); }
+      }
+
+      @media (prefers-reduced-motion: reduce){
+        .marqueeTrack{ animation:none; }
+        .poop{ display:none; }
+        .btn, .person{ transition:none; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="poopLayer" aria-hidden="true" id="poopLayer"></div>
+
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <span style="font-size:18px;">🤎</span>
+          <span>Fine Shyt Retreat Team</span>
+          <span class="badge">brown theme supremacy</span>
+        </div>
+        <div class="pill">
+          <button class="btn" id="sparkBtn" title="adds ✨ sparkles">Add Sparkles ✨</button>
+          <button class="btn primary" id="eggBtn" title="???">Do Not Press 🙅‍♀️</button>
+        </div>
+      </div>
+
+      <div class="hero">
+        <section class="card cardPad">
+          <div class="kicker">retreat squad</div>
+          <h1>ni hao <span style="color:var(--caramel)">fine shyt</span></h1>
+          <p class="subtitle">
+            One-page shrine to the team. Brown-coded. Maximum vibes. Minimal shame.
+            <span style="opacity:.9;">(press <b>V</b> for “vibe mode”)</span>
+          </p>
+
+          <div class="statRow" role="list" aria-label="Highlights">
+            <div class="chip" role="listitem">🤝 <b>Team:</b> Fine Shyt</div>
+            <div class="chip" role="listitem">🟤 <b>Theme:</b> Brown</div>
+            <div class="chip" role="listitem">💩 <b>Energy:</b> Unmatched</div>
+            <div class="chip" role="listitem">🧠 <b>IQ:</b> 999</div>
+          </div>
+
+          <div class="marquee" aria-label="Fun banner">
+            <div class="marqueeTrack">
+              <span>JACK LI •</span>
+              <span>ELIANA BARBOSA •</span>
+              <span>KEVIN XIAO •</span>
+              <span>JANAYE CHEONG •</span>
+              <span>KEON LEE •</span>
+              <span>FINE SHYT ONLY •</span>
+              <span>JACK LI •</span>
+              <span>ELIANA BARBOSA •</span>
+              <span>KEVIN XIAO •</span>
+              <span>JANAYE CHEONG •</span>
+              <span>KEON LEE •</span>
+              <span>FINE SHYT ONLY •</span>
+            </div>
+          </div>
+
+          <div class="meterRow">
+            <div class="meter">
+              <span>💩 speed</span>
+              <strong id="speedLabel">1.0×</strong>
+            </div>
+            <input id="speed" type="range" min="0" max="2.5" step="0.1" value="1.0" />
+            <div class="meter">
+              <span>🎛️ vibe meter</span>
+              <strong id="vibeLabel">chill</strong>
+            </div>
+            <input id="vibe" type="range" min="0" max="100" step="1" value="45" />
+          </div>
+        </section>
+
+        <aside class="card heroArt">
+          <div class="imgFrame">
+            <img src="team.png" alt="Fine Shyt retreat team collage" />
+            <div class="imgOverlay"></div>
+          </div>
+
+          <div class="imgCaption">
+            <div>
+              <strong style="letter-spacing:-.01em;">Hero photo</strong>
+              <div class="small">the squad in 5 frames of excellence</div>
+            </div>
+            <button class="btn" id="blessBtn" title="Not a real download — just vibes">Bless this page 🙏</button>
+          </div>
+        </aside>
+      </div>
+
+      <div class="grid">
+        <section class="card cardPad col-8">
+          <h2 class="miniTitle">Meet the team</h2>
+          <p class="muted">
+            Click a card for a little confirmation toast. Hover = extra aura.
+          </p>
+
+          <div class="teamGrid">
+            <div class="person" data-name="Eliana Barbosa" data-role="Captain of Vibes">
+              <div class="spark"></div>
+              <div class="avatar">🧋</div>
+              <p class="name">Eliana Barbosa</p>
+              <p class="role">Captain of Vibes</p>
+            </div>
+
+            <div class="person" data-name="Janaye Cheong" data-role="Logistics & Lore">
+              <div class="spark"></div>
+              <div class="avatar">📋</div>
+              <p class="name">Janaye Cheong</p>
+              <p class="role">Logistics &amp; Lore</p>
+            </div>
+
+            <div class="person" data-name="Keon Lee" data-role="Strength & Support">
+              <div class="spark"></div>
+              <div class="avatar">🏋️</div>
+              <p class="name">Keon Lee</p>
+              <p class="role">Strength &amp; Support</p>
+            </div>
+
+            <div class="person" data-name="Jack Li" data-role="Social Wizard">
+              <div class="spark"></div>
+              <div class="avatar">🗣️</div>
+              <p class="name">Jack Li</p>
+              <p class="role">Social Wizard</p>
+            </div>
+
+            <div class="person" data-name="Kevin Xiao" data-role="Tech Brain">
+              <div class="spark"></div>
+              <div class="avatar">💻</div>
+              <p class="name">Kevin Xiao</p>
+              <p class="role">Tech Brain</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="card cardPad col-4">
+          <h2 class="miniTitle">Team commandments</h2>
+          <p class="muted" style="margin-bottom:12px;">(for fun points and intimidation)</p>
+
+          <div class="chip" style="width:100%; justify-content:space-between;">
+            <span>1) Brown is not a color</span><b>it’s a lifestyle</b>
+          </div>
+          <div style="height:10px;"></div>
+
+          <div class="chip" style="width:100%; justify-content:space-between;">
+            <span>2) Group photos</span><b>mandatory</b>
+          </div>
+          <div style="height:10px;"></div>
+
+          <div class="chip" style="width:100%; justify-content:space-between;">
+            <span>3) Peak silliness</span><b>encouraged</b>
+          </div>
+          <div style="height:10px;"></div>
+
+          <div class="chip" style="width:100%; justify-content:space-between;">
+            <span>4) 💩 floats freely</span><b>no judgement</b>
+          </div>
+
+          <div style="height:14px;"></div>
+
+          <button class="btn primary" id="randomBtn" style="width:100%;">
+            Generate a retreat slogan 🎲
+          </button>
+          <p class="muted" id="slogan" style="margin-top:10px;">
+            Click to summon an unforgettable phrase.
+          </p>
+        </section>
+
+        <section class="card cardPad col-12">
+          <h2 class="miniTitle">Tiny FAQ</h2>
+          <p class="muted" style="margin:0;">
+            <b>Q:</b> Why the 💩? <b>A:</b> Because it’s funny + movement = points. <br/>
+            <b>Q:</b> How do I turn it off? <b>A:</b> Set the 💩 speed to 0×. <br/>
+            <b>Q:</b> Secret keys? <b>A:</b> Press <b>V</b> for vibe mode, <b>Shift</b>+<b>P</b> to pause/resume 💩.
+          </p>
+        </section>
+      </div>
+
+      <footer>
+        <span>© <span id="year"></span> Fine Shyt Retreat Team • built for maximum fun points 🤎</span>
+        <span style="opacity:.9;">Pro tip: press <b>V</b> or <b>Shift</b>+<b>P</b></span>
+      </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      const $ = (sel) => document.querySelector(sel);
+      const rand = (min, max) => Math.random() * (max - min) + min;
+      const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+      $("#year").textContent = new Date().getFullYear();
+
+      // Toast
+      const toastEl = $("#toast");
+      let toastTimer = null;
+      function toast(msg){
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2200);
+      }
+
+      // 💩 layer
+      const poopLayer = $("#poopLayer");
+      const POOP_COUNT = 22;
+      let speedMult = 1.0;
+      const poops = [];
+
+      function makePoop(){
+        const el = document.createElement("div");
+        el.className = "poop";
+        el.textContent = "💩";
+        poopLayer.appendChild(el);
+
+        const size = rand(18, 44);
+        const op = rand(0.20, 0.70);
+        el.style.setProperty("--size", `${size}px`);
+        el.style.setProperty("--op", op);
+
+        poops.push({
+          el,
+          x: rand(-300, window.innerWidth),
+          y: rand(0, window.innerHeight),
+          vx: rand(30, 110),
+          wobble: rand(0.6, 1.6),
+          rot: rand(-40, 40),
+          vr: rand(-35, 35),
+          phase: rand(0, Math.PI * 2)
+        });
+      }
+      for(let i=0;i<POOP_COUNT;i++) makePoop();
+
+      let lastT = performance.now();
+      function tick(t){
+        const dt = Math.min(0.032, (t - lastT) / 1000);
+        lastT = t;
+
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+
+        for(const p of poops){
+          p.x += p.vx * dt * speedMult;
+          p.phase += dt * p.wobble * (0.8 + 0.8 * speedMult);
+          const bob = Math.sin(p.phase) * (10 + 10 * speedMult);
+          p.rot += p.vr * dt * speedMult;
+
+          if(p.x > w + 140){
+            p.x = -140;
+            p.y = rand(0, h);
+            p.vx = rand(30, 110);
+          }
+          p.el.style.transform = `translate3d(${p.x}px, ${p.y + bob}px, 0) rotate(${p.rot}deg)`;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+
+      window.addEventListener("resize", () => {
+        for(const p of poops){
+          p.x = clamp(p.x, -180, window.innerWidth + 180);
+          p.y = clamp(p.y, 0, window.innerHeight);
+        }
+      });
+
+      // Sparkles
+      function sparkleAt(x, y, count=10){
+        for(let i=0;i<count;i++){
+          const s = document.createElement("div");
+          s.className = "sparkle";
+          document.body.appendChild(s);
+          const dx = rand(-70, 70);
+          const dy = rand(-70, 70);
+          const scale = rand(0.6, 1.3);
+          s.style.left = x + "px";
+          s.style.top = y + "px";
+          requestAnimationFrame(() => {
+            s.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
+            s.style.opacity = "0";
+          });
+          setTimeout(() => s.remove(), 650);
+        }
+      }
+
+      $("#sparkBtn").addEventListener("click", (e) => {
+        const r = e.target.getBoundingClientRect();
+        sparkleAt(r.left + r.width/2, r.top + r.height/2, 14);
+        toast("✨ sparkles deployed.");
+      });
+
+      $("#blessBtn").addEventListener("click", (e) => {
+        const r = e.target.getBoundingClientRect();
+        sparkleAt(r.left + r.width/2, r.top + r.height/2, 18);
+        toast("🙏 the page has been blessed.");
+      });
+
+      // Sliders
+      const speed = $("#speed");
+      const speedLabel = $("#speedLabel");
+      speed.addEventListener("input", () => {
+        speedMult = Number(speed.value);
+        speedLabel.textContent = `${speedMult.toFixed(1)}×`;
+        if(speedMult === 0) toast("💩 paused. Peace restored.");
+      });
+
+      const vibe = $("#vibe");
+      const vibeLabel = $("#vibeLabel");
+      function vibeText(v){
+        if(v < 20) return "sleepy";
+        if(v < 45) return "chill";
+        if(v < 70) return "hyped";
+        if(v < 90) return "feral";
+        return "unhinged (complimentary)";
+      }
+      function applyVibe(){
+        const v = Number(vibe.value);
+        vibeLabel.textContent = vibeText(v);
+        const bright = 0.92 + (v/100) * 0.20;
+        document.body.style.filter = `brightness(${bright})`;
+      }
+      vibe.addEventListener("input", applyVibe);
+      applyVibe();
+
+      // Cards
+      document.querySelectorAll(".person").forEach(card => {
+        card.addEventListener("click", () => {
+          toast(`${card.dataset.name}: ${card.dataset.role} ✅`);
+        });
+      });
+
+      // Slogan generator
+      const slogans = [
+        "brown-coded, retreat-loaded.",
+        "we came, we saw, we slayed (politely).",
+        "fine shyt only. no notes.",
+        "if lost, follow the vibes.",
+        "team chemistry: scientifically suspicious.",
+        "built different (in a cute way).",
+        "we don’t chase — we attract (snacks).",
+        "main character energy: group edition.",
+        "we’re not late, we’re fashionably coordinated.",
+        "vibes so strong the Wi-Fi connected automatically."
+      ];
+      $("#randomBtn").addEventListener("click", () => {
+        const s = slogans[Math.floor(Math.random()*slogans.length)];
+        $("#slogan").textContent = `“${s}”`;
+        toast("🎲 slogan generated.");
+      });
+
+      // Easter egg
+      let eggCount = 0;
+      $("#eggBtn").addEventListener("click", (e) => {
+        eggCount++;
+        const r = e.target.getBoundingClientRect();
+        sparkleAt(r.left + r.width/2, r.top + r.height/2, 24);
+
+        if(eggCount < 3){
+          toast("I said do NOT press 😭");
+          return;
+        }
+        if(eggCount === 3){
+          toast("VIBE MODE unlocked 🔓");
+          vibe.value = 88; vibe.dispatchEvent(new Event("input"));
+          speed.value = 1.7; speed.dispatchEvent(new Event("input"));
+          return;
+        }
+        vibe.value = 100; vibe.dispatchEvent(new Event("input"));
+        speed.value = 2.3; speed.dispatchEvent(new Event("input"));
+        toast("UNHINGED MODE (complimentary) 🚨");
+      });
+
+      // Keyboard shortcuts
+      document.addEventListener("keydown", (e) => {
+        if(e.key.toLowerCase() === "v"){
+          const v = Number(vibe.value);
+          vibe.value = v < 75 ? 85 : 35;
+          vibe.dispatchEvent(new Event("input"));
+          toast(v < 75 ? "Vibe mode: ON 🔥" : "Vibe mode: chill 😌");
+        }
+        if(e.shiftKey && e.key.toLowerCase() === "p"){
+          speed.value = speedMult !== 0 ? 0 : 1.0;
+          speed.dispatchEvent(new Event("input"));
+          toast(speedMult !== 0 ? "💩 paused (Shift+P)." : "💩 resumed (Shift+P).");
+        }
+      });
+    </script>
+  </body>
+</html>
+```
